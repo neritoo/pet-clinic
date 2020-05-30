@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 /**
  * @author Ezequiel Gavilán
- *
  */
 public class Pet {
 
