@@ -3,7 +3,7 @@ package com.gavilan.petclinic.model;
 /**
  * @author Ezequiel Gavilán
  */
-public abstract class PetType extends BaseEntity {
+public class PetType extends BaseEntity {
 
     private String name;
 

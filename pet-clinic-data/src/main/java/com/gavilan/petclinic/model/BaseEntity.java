@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author Ezequiel Gavilán
  */
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
 
     private Long id;
 
