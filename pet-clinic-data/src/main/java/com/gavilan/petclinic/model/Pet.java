@@ -2,7 +2,7 @@ package com.gavilan.petclinic.model;
 
 import java.time.LocalDate;
 
-/**
+/** Clase que representa una mascota, la cual sera parte de visitas segun su dueño las pida y programe.
  * @author Ezequiel Gavilán
  */
 public class Pet extends BaseEntity{

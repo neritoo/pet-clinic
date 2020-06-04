@@ -1,6 +1,6 @@
 package com.gavilan.petclinic.model;
 
-/**
+/** Clase que representa los distintos tipos de mascota.
  * @author Ezequiel Gavilán
  */
 public class PetType extends BaseEntity {
