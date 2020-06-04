@@ -1,18 +1,17 @@
 package com.gavilan.petclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.gavilan.petclinic.model.BaseEntity;
+
+import java.util.*;
 
 /**
  * Clase que simula una base de datos a través de un HashMap, donde guardaremos los valores que querramos guardar en momento
  * de ejeución.
  * @author Ezequiel Gavilán
  */
-public abstract class AbstractMapService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-    protected Map<ID, T> map = new HashMap<>();
+    protected Map<Long, T> map = new HashMap<>();
 
     /**
      * Retorna todos los objetos guardados en el HashMap.
@@ -34,11 +33,19 @@ public abstract class AbstractMapService<T, ID> {
     /**
      * Guarda el objeto solicitado en el HashMap y retorna el mismo.
      * @param object objeto a guardar.
-     * @param id id del objeto a guardar.
      * @return el objeto guardado.
      */
-    T save(ID id, T object) {
-        map.put(id, object);
+    T save(T object) {
+
+        if (object != null) {
+            if (object.getId() == null) {
+                object.setId(this.getNextId());
+            }
+
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("Object cannot be null");
+        }
 
         return object;
     }
@@ -59,4 +66,19 @@ public abstract class AbstractMapService<T, ID> {
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
+    /**
+     * Generar ids automaticamente para guardar objetos en el HashMap con id unico.
+     * @return Long del numero de id unico.
+     */
+    private Long getNextId() {
+        Long nextId = null;
+
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            nextId = 1L;
+        }
+
+        return nextId;
+    }
 }
