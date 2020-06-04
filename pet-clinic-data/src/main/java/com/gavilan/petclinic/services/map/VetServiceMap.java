@@ -1,14 +1,14 @@
 package com.gavilan.petclinic.services.map;
 
 import com.gavilan.petclinic.model.Vet;
-import com.gavilan.petclinic.services.CrudService;
+import com.gavilan.petclinic.services.VetService;
 
 import java.util.Set;
 
 /**
  * @author Ezequiel Gavilán
  */
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();

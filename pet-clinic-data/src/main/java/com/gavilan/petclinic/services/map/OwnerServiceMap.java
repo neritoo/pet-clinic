@@ -1,14 +1,14 @@
 package com.gavilan.petclinic.services.map;
 
 import com.gavilan.petclinic.model.Owner;
-import com.gavilan.petclinic.services.CrudService;
+import com.gavilan.petclinic.services.OwnerService;
 
 import java.util.Set;
 
 /**
  * @author Ezequiel Gavilán
  */
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
@@ -35,4 +35,8 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         return super.findById(id);
     }
 
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
 }
