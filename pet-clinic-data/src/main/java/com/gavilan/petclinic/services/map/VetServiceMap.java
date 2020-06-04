@@ -2,12 +2,15 @@ package com.gavilan.petclinic.services.map;
 
 import com.gavilan.petclinic.model.Vet;
 import com.gavilan.petclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * @author Ezequiel Gavilán
  */
+
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {

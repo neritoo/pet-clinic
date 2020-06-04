@@ -4,8 +4,6 @@ import com.gavilan.petclinic.model.Owner;
 import com.gavilan.petclinic.model.Vet;
 import com.gavilan.petclinic.services.OwnerService;
 import com.gavilan.petclinic.services.VetService;
-import com.gavilan.petclinic.services.map.OwnerServiceMap;
-import com.gavilan.petclinic.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,13 +20,16 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
 
     /**
-     * Constructor donde manejamos las dependencias de nuestros servicios de owner y service.
+     * Constructor donde inyectamos los nuestros servicios de owner y vet.
      * En nuestra primer implementación, utilizaremos el servicio de ambos con un HashMap.
+     * @param ownerService Servicio del owner.
+     * @param vetService Servicio del vet.
      */
-    public DataLoader() {
-        this.ownerService = new OwnerServiceMap();
-        this.vetService = new VetServiceMap();
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
