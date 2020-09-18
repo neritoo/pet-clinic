@@ -29,7 +29,7 @@ public class VetController {
      * @param model Model asociado a la vista.
      * @return String con el nombre html de la vista.
      */
-    @RequestMapping({"/vets", "/vets/vets", "/vets/vets.html"})
+    @RequestMapping({"/vets", "/vets.html" ,"/vets/vets", "/vets/vets.html"})
     public String listVets(Model model) {
         model.addAttribute("vets", this.vetService.findAll());
         return "vets/vets";
