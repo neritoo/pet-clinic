@@ -1,8 +1,10 @@
 package com.gavilan.petclinic.bootstrap;
 
 import com.gavilan.petclinic.model.Owner;
+import com.gavilan.petclinic.model.PetType;
 import com.gavilan.petclinic.model.Vet;
 import com.gavilan.petclinic.services.OwnerService;
+import com.gavilan.petclinic.services.PetTypeService;
 import com.gavilan.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,20 +21,30 @@ public class DataLoader implements CommandLineRunner {
 
     private final VetService vetService;
 
+    private final PetTypeService petTypeService;
     /**
      * Constructor donde inyectamos los nuestros servicios de owner y vet.
      * En nuestra primer implementación, utilizaremos el servicio de ambos con un HashMap.
      * @param ownerService Servicio del owner.
      * @param vetService Servicio del vet.
+     * @param petTypeService Servicio para el PetType.
      */
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDogPetType = this.petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedCatPetType = this.petTypeService.save(cat);
 
         // Creamos dos objetos owners y los guardamos con nuestro ownerService. En la primer implementación,
         // el ownerService será implementado por OwnerServiceMap, persistiendo los objetos en un HashMap en memoria.
